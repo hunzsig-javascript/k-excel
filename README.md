@@ -1,4 +1,4 @@
-# k-js-excel
+# k-excel
 
 ##### 导出传参：需要导出的数据，数据长度，设置（每份表格的条数，是否压缩，表头）.
 ##### 通过让客户端选择是否分表导出，自动整合数据导出.
@@ -6,13 +6,13 @@
 
 > 导出参考
 ```
-import KJsExcel from 'k-js-excel';
+import KExcel from 'k-excel';
 .
 .
 .
 cosnt data =[{employer_id: 11, employer_name: "11"},{employer_id: 12, employer_name: "12"}];
 const page = {total: 12, end: 2}
-const toExcel = new KJsExcel();
+const toExcel = new KExcel();
 toExcel.excelZip(data, page,
   {
 	sheetLength: 3,
@@ -28,11 +28,11 @@ toExcel.excelZip(data, page,
  
 ### 导入参考
 ```
-import KJsExcel from 'k-js-excel';
+import KExcel from 'k-excel';
 .
 .
 .
-const pullExcel = new KJsExcel();
+const pullExcel = new KExcel();
 pullExcel.excelPull(element, [
   { key: 'salary_name' },
   { key: 'salary_id' },
