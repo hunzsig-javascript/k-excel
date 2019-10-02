@@ -2,7 +2,7 @@ import React from 'react';
 import {message, Modal, Alert, Progress, Button, Upload} from 'antd';
 import Api from './Api';
 import ThisForm from '../components/DesktopForm';
-import I18n from "./I18n";
+import I18n from "i18n";
 import KExcel from './KExcel';
 
 const styles = {
