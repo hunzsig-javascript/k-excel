@@ -1,8 +1,7 @@
 import React from 'react';
 import {message, Modal, Alert, Progress, Button, Upload} from 'antd';
-import Api from './Api';
-import ThisForm from '../components/DesktopForm';
-import I18n from "i18n";
+import {Api} from 'api';
+import {I18n} from "basic";
 import KExcel from './KExcel';
 
 const styles = {
@@ -60,7 +59,7 @@ const Index = {
     pullExcel.excelPull(element, set, then);
   },
   pull: (opts) => {
-    opts.tips = opts.tips || I18n.tr('excelExporting');
+    opts.tips = opts.tips || I18n('EXCEL_EXPORTING');
     opts.isZip = opts.isZip || 1;
     opts.filter = opts.filter || [];
     opts.sheet = opts.sheet || [];
@@ -77,7 +76,7 @@ const Index = {
     const id = (new Date()).getTime();
     const modal = Modal.warn({
       width: 700,
-      title: I18n.tr('excelExport'),
+      title: I18n('EXCEL_EXPORT'),
       maskClosable: true,
       className: 'vertical-center-modal hideFooter',
       content: (
@@ -98,7 +97,7 @@ const Index = {
                   {
                     type: 'select',
                     field: 'sheetLength',
-                    name: I18n.tr('excelSheetPerRow'),
+                    name: I18n('EXCEL_SHEET_PER_ROW'),
                     map: Index.sheetLength,
                     binderType: 'number',
                   },
@@ -109,7 +108,7 @@ const Index = {
             operation: [
               {
                 type: 'submit',
-                label: I18n.tr('excelExportStart'),
+                label: I18n('EXCEL_EXPORT_START'),
               },
             ],
             onSubmit: (value) => {
@@ -120,7 +119,7 @@ const Index = {
               }
               const loading = Modal.info({
                 width: 700,
-                title: I18n.tr('waitAMoment'),
+                title: I18n('WAIT_A_MOMENT'),
                 className: 'vertical-center-modal',
                 content: (
                   <Progress id={id} percent={0} status="active"/>
@@ -134,7 +133,7 @@ const Index = {
               }, (percent) => {
                 if (percent === -1) {
                   loading.destroy();
-                  message.info(I18n.tr('excelExportNoData'));
+                  message.info(I18n('EXCEL_EXPORT_NO_DATA'));
                 } else {
                   const apb = document.getElementById(id).getElementsByClassName('ant-progress-bg')[0];
                   const apt = document.getElementById(id).getElementsByClassName('ant-progress-text')[0];
@@ -167,26 +166,26 @@ const Index = {
 
     const modal = Modal.info({
       width: 700,
-      title: I18n.tr('excelImport'),
+      title: I18n('EXCEL_IMPORT'),
       maskClosable: true,
       className: 'vertical-center-modal hideFooter',
       content: (
         <div style={styles.excelBox}>
           <Alert
-            message={I18n.tr('excelImportDownloadFileForExample')}
+            message={I18n('EXCEL_IMPORT_DOWNLOAD_FILE_FOR_EXAMPLE')}
             description={(
               <div>
                 <p>{opts.text}</p>
                 {
                   opts.downloadText &&
-                  <a style={{marginRight: '2rem'}} href={opts.downloadText} download={I18n.tr('guideBook')}>
-                    {I18n.tr('excelDownloadGuideBook')}
+                  <a style={{marginRight: '2rem'}} href={opts.downloadText} download={I18n('GUIDE_BOOK')}>
+                    {I18n('EXCEL_DOWNLOAD_GUIDE_BOOK')}
                   </a>
                 }
                 {
                   opts.download &&
-                  <a href={opts.download} download={I18n.tr('guideTpl')}>
-                    {I18n.tr('excelDownloadGuideTpl')}
+                  <a href={opts.download} download={I18n('GUIDE_TPL')}>
+                    {I18n('EXCEL_DOWNLOAD_GUIDE_TPL')}
                   </a>
                 }
               </div>
@@ -202,7 +201,7 @@ const Index = {
             beforeUpload={beforeUpload}
             multiple
           >
-            <Button type="primary" style={{margin: "1rem 0 10px"}}>{I18n.tr('uploadFile')}</Button>
+            <Button type="primary" style={{margin: "1rem 0 10px"}}>{I18n('UPLOAD_FILE')}</Button>
           </Upload>
         </div>
       ),
